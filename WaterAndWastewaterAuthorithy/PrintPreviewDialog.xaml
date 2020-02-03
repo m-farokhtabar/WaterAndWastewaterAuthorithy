@@ -1,0 +1,51 @@
+﻿<Window xmlns:Viewer="clr-namespace:Stimulsoft.Report.Viewer;assembly=Stimulsoft.Report.Wpf"  x:Class="WaterAndWastewaterAuthorithy.PrintPreviewDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PrintPreviewDialog" Height="300" Width="300" WindowStartupLocation="CenterScreen" WindowState="Maximized" Style="{StaticResource WindowStyle}" Loaded="Window_Loaded" KeyDown="UserControl_KeyDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" x:Name="GridHeaderCustomers" Background="#FF01317d">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition x:Name="GridColNew"  Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition x:Name="GridColSave" Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition x:Name="GridColReport" Width ="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image     Grid.Column="0" Grid.Row="0" Source="Images/Reports/report.png" Margin="0 0 0 0" Width="32" Height="32"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=TitleOfWindows}">گزارشات</TextBlock>
+            </Grid>
+            <Viewer:StiWpfViewerControl x:Name="ReportViewer" Grid.Row="1" ShowClose="False" ShowPageNew="False" ShowReportPrint="False" ShowPageDelete="False" ShowPageDesign="False" ShowReportOpen="False"/>
+        <Border Grid.Row="2" Background="{StaticResource ResourceKey=BrushBackgroundFooter}" Padding="15 0 15 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="190"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="2" x:Name="ButtonReturn" Style="{StaticResource ResourceKey=ReturnButton}" Width="180" Content="بازگشت به منوی اصلی [Esc]" Click="ButtonReturn_Click" ToolTip="بازگشت به منوی اصلی کلید میانبر [ESC]">
+                    <Button.Resources>
+                        <ImageSource x:Key="ImageButton">Images/Windows/Footer/Back.png</ImageSource>
+                    </Button.Resources>
+                </Button>
+                <Button Grid.Row="0" Grid.Column="0" x:Name="PrintButton" Style="{StaticResource ResourceKey=ReturnButton}" Width="180" Content="چاپ [Ctrl+P]" Click="PrintButton_Click">
+                    <Button.Resources>
+                        <ImageSource x:Key="ImageButton">Images/Windows/Footer/Print.png</ImageSource>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

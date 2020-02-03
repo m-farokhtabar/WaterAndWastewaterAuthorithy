@@ -1,0 +1,23 @@
+﻿<Window x:Class="WaterAndWastewaterAuthorithy.Splash"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Splash" Height="228" Width="350" WindowStartupLocation="CenterScreen" Style="{StaticResource ResourceKey=WindowStyle}">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard Storyboard.TargetName="ProjectName" Completed="Storyboard_Completed">
+                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Right)" From="-270" To="40" Duration="0:0:1" AccelerationRatio="0.1" DecelerationRatio="0.9"/>
+                    <DoubleAnimation Storyboard.TargetProperty="(Opacity)" From="0" To="1" Duration="0:0:1.5" AccelerationRatio="0.9" DecelerationRatio="0.1"/>
+                    <DoubleAnimation Storyboard.TargetName="RectWaterLogo" Storyboard.TargetProperty="(Canvas.Right)" From="2" To="54" Duration="0:0:1.2" AccelerationRatio="0.4" DecelerationRatio="0.4"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Canvas>
+        <Image x:Name="TaralLogo" Source="/Images/Splash/TaralLogo.jpg"></Image>
+        <Image x:Name="WaterLogo" Source="/Images/Splash/WaterWasteWaterAuthorityLogo.jpg" Canvas.Right="2" Width="52" Height="50" Stretch="None"></Image>
+        <Rectangle x:Name="RectWaterLogo" Fill="#008ecf" Width="52" Height="50" Canvas.Right="2"/>
+        <Image x:Name="ProjectName" Source="/Images/Splash/ProjectName.jpg" Canvas.Top="105" Canvas.Right="40" Opacity="1"></Image>
+        <TextBlock FontSize="10" Foreground="White" Canvas.Top="208" Canvas.Left="6">1392 © کلیه حقوق نرم افزار متعلق به شرکت شبکه پردازان امید پارسیان (تارال) می باشد.</TextBlock>
+    </Canvas>
+</Window>

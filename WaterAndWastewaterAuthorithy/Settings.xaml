@@ -1,0 +1,232 @@
+﻿<UserControl x:Class="WaterAndWastewaterAuthorithy.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ValidateControl="clr-namespace:WaterAndWastewaterAuthorithy.Validations"
+             xmlns:Bc="clr-namespace:WaterAndWastewaterAuthorithy.BindingConvertor"
+             mc:Ignorable="d" 
+             x:Name="UserControlBillPeriods" d:DesignHeight="425" d:DesignWidth="820" Margin="0 0 0 0" Background="#FFebe9fd" Loaded="UserControlBillPeriods_Loaded" KeyDown="UserControl_KeyDown" IsVisibleChanged="UserControlBillPeriods_IsVisibleChanged">
+    <UserControl.Resources>
+        <ImageSource x:Key="ImageCustomerSelected">Images/Windows/Toolbar/SettingsSelected.png</ImageSource>
+        <Bc:BoolConvertor x:Key="boolconverter" />
+    </UserControl.Resources>
+    <UserControl.BitmapEffect>
+        <DropShadowBitmapEffect></DropShadowBitmapEffect>
+    </UserControl.BitmapEffect>
+    <Grid ShowGridLines ="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition x:Name="GridRowNewAccountType" Height="330"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0" x:Name="GridHeader" Background="#FF01317d">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>                
+                <ColumnDefinition x:Name="GridColSave" Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image     Grid.Column="0" Grid.Row="0" Source="Images/MainMenu/Setting.png" Margin="0 0 0 0" Width="32" Height="32"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=TitleOfWindows}">تنظیمات سیستم</TextBlock>
+            <Button    x:Name="ButtonDefination" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButton}"  Margin="10 0 0 0" Width="76" Content="تعریف دوره" Tag="ImageCustomerSelected" ToolTip="تعریف دوره کلید میان بر [F4]" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/Toolbar/Settings.png</ImageSource>
+                </Button.Resources>
+            </Button>
+            <Button  x:Name="ButtonSave"  Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButton}"  Margin="5 0 0 0" Width="46" Content="ثبت" Click="ButtonSave_Click" ToolTip="ثبت کلید میان بر [F6]" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/Toolbar/Save.png</ImageSource>
+                </Button.Resources>
+            </Button>
+            <Button  x:Name="ButtonCloseYear"  Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButton}"  Margin="5 0 0 0" Width="76" Content="بستن سال مالی" Click="ButtonCloseYear_Click" ToolTip="بستن سال مالی کلید میان بر [F11]" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/Toolbar/YearClose.png</ImageSource>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+        <Grid x:Name="GridNewAccountType"  Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="235"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="545"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+           
+            <Image     Grid.Column="0" Grid.Row="0" Source="Images/Windows/Validate/ForceToFill.png" Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            انتخاب سال مالی اجباری می باشد.
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <ComboBox Validation.ErrorTemplate="{StaticResource ComboValidationTemplate}" x:Name="ComboBoxCurrentYear" Grid.Column="1" Grid.Row="0" Width="165" Style="{StaticResource ResourceKey=ComboBoxTheme}"  KeyDown="TextBox_KeyDown" PreviewKeyDown="ComboBox_PreviewKeyDown" LostFocus="ComboBox_LostFocus" GotFocus="ComboBox_GotFocus" Tag=".لطفا سال مالی را انتخاب نمایید">
+                <ComboBox.SelectedIndex>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="SelectedIndex" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:ComboValidate Start="1" Title="سال مالی"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.SelectedIndex>
+            </ComboBox>
+
+            <Button Grid.Row="1" Grid.Column="1" x:Name="ButtonCreateYear" Style="{StaticResource ResourceKey=DefaultButton}" Width="165" Content="ایجاد سال مالی جدید" Click="ButtonCreateYear_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="ایجاد سال مالی جدید [Ctrl+F]" HorizontalAlignment="Left">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Buttons/YearCreate.png</ImageSource>
+                </Button.Resources>
+            </Button>
+
+            <Image     Grid.Column="0" Grid.Row="2" Source="Images/Windows/Validate/ForceToFill.png" Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            ورود ارزش افزوده اجباری می باشد.
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox  x:Name="TextBoxVat" Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="2" Tag=".لطفا ارزش افزوده(درصد) را وارد نمایید" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" FlowDirection="LeftToRight" GotFocus="TextBox_GotFocus">
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:NumberValidate Min="1" Max="2" IsEmpty="False" Title="ارزش افزوده"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox  x:Name="TextBoxSubscription" Grid.Column="3" Grid.Row="2" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="8" Tag=".لطفا آبونمان را وارد نمایید" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" FlowDirection="LeftToRight" GotFocus="TextBox_GotFocus">
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:NumberValidate Min="1" Max="8" IsEmpty="False" Title="آبونمان"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <Image  Margin="0 5 0 0" Grid.Column="0" Grid.Row="3" Source="Images/Windows/Validate/ForceToFill.png"  Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            ورود نام سازمان اجباری می باشد.
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox x:Name="TextBoxCompanyName"  Margin="0 5 0 0" Grid.Column="1" Grid.Row="3" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="50" Tag="لطفا نام سازمان را وارد نمایید." LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus">
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:StringValidate Max="50" Title="نام سازمان"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            
+            <Image  Margin="0 5 0 0" Grid.Column="2" Grid.Row="3" Source="Images/Windows/Validate/ForceToFill.png"  Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            ورود نام امور آبفار شهرستان اجباری می باشد.
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox x:Name="TextBoxAuthorityName"  Margin="0 5 0 0" Grid.Column="3" Grid.Row="3" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="50" Tag="لطفا نام امور آبفار شهرستان را وارد نمایید." LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus">
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:StringValidate Max="40" Title="امور آبفار شهرستان"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <Image     Grid.Column="0" Grid.Row="4" Source="Images/Windows/Validate/ForceToFill.png" Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            ورود شماره تلفن سازمان اجباری می باشد.
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox  x:Name="TextBoxTel" Grid.Column="1" Grid.Row="4" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="11" Tag=".لطفا شماره تلفن سازمان را وارد نمایید" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" FlowDirection="LeftToRight" GotFocus="TextBox_GotFocus">
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:NumberValidate Min="7" Max="11" IsEmpty="False" Title="شماره تلفن سازمان"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <Image  Margin="0 5 0 0" Grid.Column="0" Grid.Row="5" Source="Images/Windows/Validate/ForceToFill.png"  Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            ورود آدرس سازمان اجباری می باشد.
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox x:Name="TextBoxAddress"  Margin="0 5 0 0" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="5" Style="{StaticResource ResourceKey=EditOfFields}" Width="455" MaxLength="250" Tag="لطفا آدرس سازمان را وارد نمایید." LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus">
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:StringValidate Max="250" Title="آدرس سازمان"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+
+            <Image  Grid.Column="0" Grid.Row="5"  Width="16" Height="16"/>
+            <TextBox x:Name="TextBoxMessage" Margin="0 10 0 0" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Style="{StaticResource ResourceKey=EditOfFields}" Width="455" Height="50" MaxLength="250" VerticalAlignment="Top" Tag="لطفا پیام قبوض را وارد نمایید." KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
+        </Grid>
+
+        <Border Grid.Column="0" Grid.Row="2" Background="{StaticResource ResourceKey=BrushBackgroundFooter}" Padding="15 0 15 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="2" x:Name="ButtonReturn" Style="{StaticResource ResourceKey=ReturnButton}" Width="140" Content="بازگشت به منوی اصلی" Click="ButtonReturn_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="بازگشت به منوی اصلی کلید میانبر [ESC]">
+                    <Button.Resources>
+                        <ImageSource x:Key="ImageButton">Images/Windows/Footer/Back.png</ImageSource>
+                    </Button.Resources>
+                </Button>
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                    <Image Source="Images/Windows/Footer/Help.png" VerticalAlignment="Center" Width="28" Height="28"></Image>
+                    <TextBlock x:Name="Hint" Text="" VerticalAlignment="Center" Margin="8 0 0 0" Foreground="White"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
+

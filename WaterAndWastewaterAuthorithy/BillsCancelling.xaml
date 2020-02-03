@@ -1,0 +1,606 @@
+﻿<UserControl x:Class="WaterAndWastewaterAuthorithy.BillsCancelling"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ValidateControl="clr-namespace:WaterAndWastewaterAuthorithy.Validations"
+             xmlns:MMc="clr-namespace:WaterAndWastewaterAuthorithy.BindingConvertor"
+             mc:Ignorable="d"                           
+             x:Name="UserControlBillsCancelling" d:DesignHeight="690" d:DesignWidth="820" Margin="0 0 0 0" Background="#FFfde9e9" Loaded="UserControlBilling_Loaded" IsVisibleChanged="UserControlBilling_IsVisibleChanged" KeyDown="UserControl_KeyDown">
+    <UserControl.Resources>
+        <MMc:MoneyConvertor x:Key="moneyconverter" />
+        <ImageSource x:Key="ImageCustomerSelected">Images/Windows/Toolbar/BillsCancellingSelected.png</ImageSource>
+        <ImageSource x:Key="ImageSearchSelected">Images/Windows/Toolbar/SearchRedSelected.png</ImageSource>
+    </UserControl.Resources>
+    <UserControl.BitmapEffect>
+        <DropShadowBitmapEffect></DropShadowBitmapEffect>
+    </UserControl.BitmapEffect>
+    <Grid ShowGridLines ="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition x:Name="GridRowNew"     Height="340"></RowDefinition>
+            <RowDefinition x:Name="GridRowSearch"  Height="340"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0" x:Name="GridHeader" Background="#FF7d0101">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>                
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition x:Name="GridColReport" Width ="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image     Grid.Column="0" Grid.Row="0" Source="Images/MainMenu/BillsCancelling.png" Margin="0 0 0 0" Width="32" Height="32"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=TitleOfWindows}" Margin="1,18,0,10">ابطال آخرین قبوض اشتراک در دوره</TextBlock>
+            <Button    x:Name="ButtonDefination" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButtonRed}"  Margin="10 0 0 0" Width="76" Content="ابطال قبض" Click="ButtonDefination_Click" Tag="ImageCustomerSelected" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="ابطال قبض کلید میان بر [F4]">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/Toolbar/BillsCancelling.png</ImageSource>
+                </Button.Resources>
+            </Button>
+            <Button  x:Name="ButtonSearch"  Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButtonRed}"  Margin="10 0 0 0" Width="76" Content="جستجو" Click="ButtonSearch_Click" Tag="ImageSearchSelected" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="جستجو کلید میان بر [F7]">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/Toolbar/Search.png</ImageSource>
+                </Button.Resources>
+            </Button>
+            <Button   x:Name="ButtonReport" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButtonRed}"  Margin="5 0 0 0" Width="46" Content="گزارش" Tag="ImageReportSelected" Click="ButtonReport_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="گزارش کلید میان بر [F8]">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/Toolbar/Report.png</ImageSource>
+                </Button.Resources>
+            </Button>
+        </Grid>
+        <Grid x:Name="GridNew"  Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="130"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="235"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="270"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="255"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image  Margin="0 5 0 0" Grid.Column="0" Grid.Row="0" Source="Images/Windows/Validate/ForceToFill.png"  Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            ورود کد اشتراک اجباری می باشد.
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox x:Name="TextBoxSubScriptionId"  Margin="0 5 0 0" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="9" Tag=".لطفا کد اشتراک را وارد نمایید" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" FlowDirection="LeftToRight" TextChanged="TextBoxSubScriptionId_TextChanged" LostFocus="TextBoxSubScriptionId_LostFocus" GotFocus="TextBox_GotFocus">
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:SubscriptionValidate Min="3" Max="9" Title="کد اشتراک"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <StackPanel Grid.Row="0" Grid.Column="3" Height="40" Grid.ColumnSpan="6" Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFfde9e9" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <TextBlock VerticalAlignment="Center" Margin="25 0 0 0">نام دوره:</TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="5 0 0 0" x:Name="TextBlockPeriod" Style="{StaticResource ResourceKey=ImportantText}"></TextBlock>
+            </StackPanel>
+            <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" BorderBrush="#FFd7e7ff" BorderThickness="0">
+                <Grid  Width="820">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                            <GradientStop Color="#FFfde9e9" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125"></ColumnDefinition>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                        <ColumnDefinition Width="110"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="110"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="125"></ColumnDefinition>
+                        <ColumnDefinition Width="35"></ColumnDefinition>
+                        <ColumnDefinition Width="110"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Height="60" Width="125" TextAlignment="Center" Padding="0 18 0 0" Margin="0 0 0 0">
+                        <TextBlock.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                <GradientStop Color="#FFf5b8b8" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Background>
+                        مشخصات مشترک
+                    </TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="17 0 0 0">کد مشترک:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" x:Name="TextBlockCustomerId" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Margin="47 0 0 0">نام:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="4" x:Name="TextBlockName" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="5" Margin="2 0 0 0">نام خانوادگی:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="6" x:Name="TextBlockFamily" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="7">نام پدر:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="8" x:Name="TextBlockFather" Margin="5 0 0 0"></TextBlock>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="32 0 0 0">کد ملی:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" x:Name="TextBlockMelicode" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Margin="19 0 0 0">کد پستی:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="4" x:Name="TextBlockPostalCode" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="5" Margin="9 0 0 0">تلفن همراه:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="6" x:Name="TextBlockMobile" Margin="5 0 0 0"></TextBlock>
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="37 0 0 0">آدرس:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="7" x:Name="TextBlockAddress" Margin="5 0 0 0"></TextBlock>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="0" Grid.Row="2"  Grid.ColumnSpan="6" BorderBrush="#FFd7e7ff" BorderThickness="0">
+                <Grid  Width="820">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                            <GradientStop Color="#FFfde9e9" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125"></ColumnDefinition>
+                        <ColumnDefinition Width="85"></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="70"></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="75"></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="105"></ColumnDefinition>
+                        <ColumnDefinition Width="85"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Height="60" Width="125" TextAlignment="Center" Padding="0 18 0 0">
+                        <TextBlock.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                <GradientStop Color="#FFf5b8b8" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Background>
+                        مشخصات اشتراک
+                    </TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="35 0 0 0" VerticalAlignment="Center">نوع کاربری:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" x:Name="TextBlockAccountType" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="5" Margin="38 0 0 0">کد مانع:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="6" x:Name="TextBlockPreventType" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="7" Margin="52 0 0 0">شماره کنتور:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="8" x:Name="TextBlockWaterMeterSerial" Margin="5 0 0 0"></TextBlock>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="10 0 0 0" VerticalAlignment="Center">تاریخ قرائت قبلی:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" x:Name="TextBlockCurrentReadDate" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Margin="22 0 0 0" VerticalAlignment="Center">قرائت قبلی:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="4" x:Name="TextBlockCurrentNumber" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="5" Margin="9 0 0 0" VerticalAlignment="Center">کسر هزار ریال:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="6" x:Name="TextBlockDeficit1000" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="7" Margin="0 0 0 0" VerticalAlignment="Center">مقدار بدهی قابل پرداخت:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="8" x:Name="TextBlockDebt" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="8 0 0 0">کد پستی اشتراک:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="2" x:Name="TextBlockSubscriptionPostalCode" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="3" Margin="8 0 0 0">آدرس اشتراک:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="5" x:Name="TextBlockSubscriptionAddress" Margin="5 0 0 0"></TextBlock>
+                </Grid>
+            </Border>
+            <Border Grid.Column="0" Grid.Row="3"  Grid.ColumnSpan="6" BorderBrush="#FFd7e7ff" BorderThickness="0">
+                <Grid  Width="820">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                            <GradientStop Color="#FFfde9e9" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125"></ColumnDefinition>
+                        <ColumnDefinition Width="85"></ColumnDefinition>
+                        <ColumnDefinition Width="93"></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="93"></ColumnDefinition>
+                        <ColumnDefinition Width="75"></ColumnDefinition>
+                        <ColumnDefinition Width="94"></ColumnDefinition>
+                        <ColumnDefinition Width="70"></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Height="120" Width="125" TextAlignment="Center" Padding="0 48 0 0">
+                        <TextBlock.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                <GradientStop Color="#FFf5b8b8" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Background>
+                        آخرین قبض اشتراک
+                    </TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="41 0 0 0" VerticalAlignment="Center">کد پرونده:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" x:Name="TextBlockBillId" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Margin="29 0 0 0" VerticalAlignment="Center">نوع کاربری:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3" x:Name="TextBlockAccountTypeBill" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="7" Margin="38 0 0 0">کد مانع:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="8" x:Name="TextBlockPreventTypeBill" Margin="5 0 0 0"></TextBlock>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="33 0 0 0" VerticalAlignment="Center">مصرف مجاز:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" x:Name="TextBlockAllowableConsumption" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Margin="5 0 0 0" VerticalAlignment="Center">مبلغ مصرف مجاز:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="4" x:Name="TextBlockPriceOFConsumption" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="5" Margin="-9 0 0 0" VerticalAlignment="Center">تاریخ قرائت قبلی:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="6" x:Name="TextBlockPrevReadDateBill" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="7" Margin="23 0 0 0" VerticalAlignment="Center">قرائت قبلی:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="8" x:Name="TextBlockPrevNumberBill" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="33 0 0 0">مصرف مازاد:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="2" x:Name="TextBlockExtraConsumption" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="3" Margin="4 0 0 0">مبلغ مصرف مازاد:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="4" x:Name="TextBlockPriceOfExtraConsumption" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="5" Margin="-9 0 0 0">تاریخ قرائت فعلی:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="6" x:Name="TextBlockCurrentReadDateBill" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="7" Margin="22 0 0 0">قرائت فعلی:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="8" x:Name="TextBlockCurrentNumberBill" Margin="5 0 0 0" Style="{StaticResource ResourceKey=ImportantText}" VerticalAlignment="Center"></TextBlock>
+
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="40 0 0 0" VerticalAlignment="Center">مصرف کل:</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="2" x:Name="TextBlockAllConsumption" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="3" Margin="11 0 0 0" VerticalAlignment="Center">مبلغ مصرف کل:</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="4" x:Name="TextBlockPriceOFAllConsumption" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="5" Margin="11 0 0 0" VerticalAlignment="Center">ارزش افزوده:</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="6" x:Name="TextBlockVat" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="7" Margin="28 0 0 0" VerticalAlignment="Center">جمع دوره:</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="8" x:Name="TextBlockPriceOFPeriod" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+
+                    <TextBlock Grid.Row="4" Grid.Column="1" Margin="19 0 0 0" VerticalAlignment="Center">مانده کسر هزار:</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="2" x:Name="TextBlockPrevdeficit1000" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="3" Margin="-1 0 0 0" VerticalAlignment="Center">کسر هزار مبلغ کل:</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="4" x:Name="TextBlockDeficit1000Bill" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="5" Margin="17 0 0 0" VerticalAlignment="Center">بدهی قبلی:</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="6" x:Name="TextBlockDebtBill" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="7" Margin="35 0 0 0" VerticalAlignment="Center">مبلغ کل:</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="8" x:Name="TextBlockPriceOFAll" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+
+                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="47 0 0 0" VerticalAlignment="Center">مبلغ قابل پرداخت:</TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="2" x:Name="TextBlockPayablePrice" Style="{StaticResource ResourceKey=ImportantText}" Margin="5 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="3" Margin="23 0 0 0">شماره کنتور:</TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="4" x:Name="TextBlockWaterMeterSerialBill" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="5" Margin="23 0 0 0">مبلغ آبونمان:</TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="6" x:Name="TextBlockSubscriptionCost" Margin="5 0 0 0"></TextBlock>
+
+                </Grid>
+            </Border>
+            <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="6" x:Name="ButtonCancel" Style="{StaticResource ResourceKey=DefaultButton}" Width="820" Content="ابطال قبض" Click="ButtonSave_Click" KeyDown="ButtonCancel_KeyDown" ToolTip="ابطال قبض [Ctrl+S]" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Buttons/Cancel.png</ImageSource>
+                </Button.Resources>
+            </Button>
+
+        </Grid>
+
+        <Grid x:Name="GridSearch"  Grid.Column="0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="46" />
+                <RowDefinition Height="259"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center" Height="35">
+                <StackPanel.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFfde9e9" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <RadioButton VerticalAlignment="Center" x:Name="RadioSearchBySubCode"    Style="{StaticResource ResourceKey=RadioTemplate}" Margin="3 0 10 0" FontSize="13" IsTabStop="False" KeyDown="ControlSearch_KeyDown" FocusVisualStyle="{x:Null}" Checked="RadioSearchBySubCode_Checked" GotFocus="RadioSearch_GotFocus" Tag="لطفا نوع جستجوی خود را مشخص نمایید." >جستجو بر اساس کد اشتراک</RadioButton>
+                <RadioButton VerticalAlignment="Center" x:Name="RadioSearchByCode"    Style="{StaticResource ResourceKey=RadioTemplate}" Margin="50 0 0 0" FontSize="13" IsTabStop="False" KeyDown="ControlSearch_KeyDown" FocusVisualStyle="{x:Null}" Checked="RadioSearchByCode_Checked" GotFocus="RadioSearch_GotFocus" Tag="لطفا نوع جستجوی خود را مشخص نمایید." >جستجو بر اساس کد(پرونده، مشترک)</RadioButton>
+            </StackPanel>
+            <Image  x:Name="ImageSearch" Grid.Column="0" Grid.Row="1" Margin="3 5 0 0"  Source="Images/Windows/Validate/ForceToSearch.png"  Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            متن وارد شده در تمامی مشخصات مشترک جستجو خواهد شد.
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox x:Name="TextBoxSearch" Grid.Column="1" Grid.Row="1" Margin="5 5 5 0" Style="{StaticResource ResourceKey=EditOfFields}" Width="250" MaxLength="200" Tag="لطفا متن مورد نظر خود را جهت جستجو وارد نمایید." KeyDown="ControlSearch_KeyDown" GotFocus="TextBox_GotFocus"/>
+
+            <DataGrid  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" x:Name="DataGridView" Height="296" Width="820" IsTabStop="False"                        
+                       Style="{StaticResource ResourceKey=DataGridCustomers}" PreviewKeyDown="DataGridCustomers_PreviewKeyDown" RowHeight="40">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="شماره پرونده" Width="54" Binding="{Binding Path=Id}" SortDirection="Ascending"></DataGridTextColumn>
+                    <DataGridTemplateColumn Width="60" Header="1">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0">کد اشتراک</TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1">کد مشترک</TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=SubId}"></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=CustId}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="75" Header="2">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" TextAlignment="Center">قرائت قبلی</TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1">تاریخ قرائت قبلی</TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=PrevNumber}"></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=PrevReadDate}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="75" Header="3">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" TextAlignment="Center">قرائت فعلی</TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1">تاریخ قرائت فعلی</TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=CurrentNumber}"></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=CurrentReadDate}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="77" Header="4">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" TextAlignment="Center">مصرف کل</TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1">مبلغ مصرف کل</TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=Consumption}"></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=PriceOfConsumption}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="80" Header="5">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" TextAlignment="Center">مصرف مجاز</TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1">مبلغ مصرف مجاز</TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=AllowableConsumption}"></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=PriceOfAllowableConsumption}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="80" Header="6">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" TextAlignment="Center">مصرف مازاد</TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1">مبلغ مصرف مازاد</TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=ExtraConsumption}"></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=PriceOfExtraConsumption}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="80" Header="7">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" TextAlignment="Center">ارزش افزوده</TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center">جمع دوره</TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=Vat}"></TextBlock>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=SumOfPeriod}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="مانده کسر هزار" Width="80" Binding="{Binding Path=deficit1000,Converter={StaticResource ResourceKey=moneyconverter}}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FlowDirection" Value="LeftToRight" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="مانده بدهی" Width="60" Binding="{Binding Path=PrevDebt,Converter={StaticResource ResourceKey=moneyconverter}}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FlowDirection" Value="LeftToRight" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="مبلغ ابطالی قبض" Width="80" Binding="{Binding Path=CancelPrice}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FlowDirection" Value="LeftToRight" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>                    
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Grid Height="50">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="نام : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="نام خانوادگی : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=Family}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text="نام پدر : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" Text="{Binding Path=Father}" VerticalAlignment="Center" />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 0 0 0" Text="نوع کاربری : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=AccounType}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text="کد مانع : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Path=Prevent}" VerticalAlignment="Center"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </Grid >
+
+        <Border Grid.Column="0" Grid.Row="3" Background="{StaticResource ResourceKey=BrushBackgroundFooter}" Padding="15 0 15 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="2" x:Name="ButtonReturn" Style="{StaticResource ResourceKey=ReturnButton}" Width="140" Content="بازگشت به منوی اصلی" Click="ButtonReturn_Click" ToolTip="بازگشت به منوی اصلی کلید میانبر [ESC]" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+                    <Button.Resources>
+                        <ImageSource x:Key="ImageButton">Images/Windows/Footer/Back.png</ImageSource>
+                    </Button.Resources>
+                </Button>
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                    <Image Source="Images/Windows/Footer/Help.png" VerticalAlignment="Center" Width="28" Height="28"></Image>
+                    <TextBlock x:Name="Hint" Text="" VerticalAlignment="Center" Margin="8 0 0 0" Foreground="White"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
+
+

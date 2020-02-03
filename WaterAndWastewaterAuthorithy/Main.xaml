@@ -1,0 +1,43 @@
+﻿<Window x:Class="WaterAndWastewaterAuthorithy.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WaterControl="clr-namespace:WaterAndWastewaterAuthorithy"
+        xmlns:WaterPresentClass="clr-namespace:WaterAndWastewaterAuthorithy.Presentation"
+        Title="نرم افزار آب و فاضلاب طرقرود" Height="690" Width="920" Closed="Window_Closed" Style="{StaticResource WindowStyle}" WindowState="Maximized">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/Background.jpg" Stretch="Fill"/>
+    </Window.Background>
+    <Grid Height="690" Width="920">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="920" x:Name="MainMenu"        x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="Customers"       x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="Subscriptions"   x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="AccountTypes"    x:FieldModifier="public"></ColumnDefinition>            
+            <ColumnDefinition Width="0"   x:Name="SingleBilling"   x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="BillsReceivable" x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="BillsCancelling" x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="BillsPrint"     x:FieldModifier="public"></ColumnDefinition>            
+            <ColumnDefinition Width="0"   x:Name="BillPeriods"     x:FieldModifier="public"></ColumnDefinition>            
+            <ColumnDefinition Width="0"   x:Name="Settings"        x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="About"           x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="Reports"         x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="WaterMeters"     x:FieldModifier="public"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <WaterControl:MainMenu        x:Name="UserControlMainMenu"        Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <WaterControl:Customers       x:Name="UserControlCustomers"       Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"  x:FieldModifier="public"  />
+        <WaterControl:Subscriptions   x:Name="UserControlSubscriptions"   Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:AccountTypes    x:Name="UserControlAccountTypes"    Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>        
+        <WaterControl:SingleBilling   x:Name="UserControlSingleBilling"   Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:BillsReceivable x:Name="UserControlBillsReceivable" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:BillsCancelling x:Name="UserControlBillsCancelling" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:BillsPrint      x:Name="UserControlBillsPrint"      Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:BillPeriods     x:Name="UserControlBillPeriods"     Grid.Column="8" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:Settings        x:Name="UserControlSettings"        Grid.Column="9" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:About           x:Name="UserControlAbout"           Grid.Column="10" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:Reports         x:Name="UserControlReports"         Grid.Column="11" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:WaterMeters     x:Name="UserControlWaterMeters"     Grid.Column="12" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+    </Grid>    
+</Window>

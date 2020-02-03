@@ -1,0 +1,63 @@
+﻿<Window x:Class="WaterAndWastewaterAuthorithy.MessageDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MessageDialog" Height="200" Width="380" Style="{StaticResource WindowStyle}"  AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Topmost="True">
+    <Grid Background="White" Height="170" Width="350">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2">
+            </DropShadowEffect>    
+        </Grid.Effect>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid  x:Name="GridTitle" Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="ImageIcon" Grid.Column="0" Grid.Row="0" Source="{DynamicResource ResourceKey=ImageHeaderDialogInfo}" Width="32" Height="32">
+                <Image.Resources>
+                    <ImageSource x:Key="ImageHeaderDialogInfo">Images/Windows/MessageDialog/Info.png</ImageSource>
+                    <ImageSource x:Key="ImageHeaderDialogWarning">Images/Windows/MessageDialog/Warning.png</ImageSource>
+                    <ImageSource x:Key="ImageHeaderDialogError">Images/Windows/MessageDialog/Error.png</ImageSource>
+                </Image.Resources>
+            </Image>
+            <TextBlock x:Name="TextBlockTitle"   Grid.Column="1" Grid.Row="0" x:FieldModifier="public" Style="{StaticResource ResourceKey=TitleOfDialog}"></TextBlock>
+        </Grid>        
+        
+        <TextBlock x:Name="TextBlockMessage" Grid.Column="0" Grid.Row="1" x:FieldModifier="public" Margin="10 20 10 0" TextWrapping="WrapWithOverflow"></TextBlock>
+        <Grid  x:Name="GridFooter" Grid.Column="0" Grid.Row="2" Width="350" FlowDirection="LeftToRight">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>                                
+            </Grid.ColumnDefinitions>            
+            <Button Grid.Column="0" x:Name="ButtonOk" Content="تایید" Width="100" x:FieldModifier="public" Margin="5 0 5 5" Style="{StaticResource ResourceKey=DialogButton}"   IsTabStop="True" TabIndex="0" KeyDown="ButtonYes_KeyDown" Click="ButtonOk_Click">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/MessageDialog/Yes.png</ImageSource>                    
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="0" x:Name="ButtonNo" Content="خیر"  Width="100" x:FieldModifier="public" Margin="5 0 5 5" Style="{StaticResource ResourceKey=DialogButton}" IsTabStop="True" TabIndex="1"  KeyDown="ButtonNo_KeyDown" Click="ButtonNo_Click">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/MessageDialog/No.png</ImageSource>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="1"   x:Name="ButtonYes" Content="بلی" Width="100" x:FieldModifier="public" Margin="5 0 5 5" Style="{StaticResource ResourceKey=DialogButton}" IsTabStop="True" TabIndex="0" KeyDown="ButtonYes_KeyDown" Click="ButtonYes_Click">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Windows/MessageDialog/Yes.png</ImageSource>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
