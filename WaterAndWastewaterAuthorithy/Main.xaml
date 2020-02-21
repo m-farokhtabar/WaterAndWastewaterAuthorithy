@@ -25,6 +25,8 @@
             <ColumnDefinition Width="0"   x:Name="About"           x:FieldModifier="public"></ColumnDefinition>
             <ColumnDefinition Width="0"   x:Name="Reports"         x:FieldModifier="public"></ColumnDefinition>
             <ColumnDefinition Width="0"   x:Name="WaterMeters"     x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="ReportSubAllPeriods"  x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="SendSmsToDebtors"     x:FieldModifier="public"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <WaterControl:MainMenu        x:Name="UserControlMainMenu"        Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <WaterControl:Customers       x:Name="UserControlCustomers"       Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"  x:FieldModifier="public"  />
@@ -39,5 +41,7 @@
         <WaterControl:About           x:Name="UserControlAbout"           Grid.Column="10" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
         <WaterControl:Reports         x:Name="UserControlReports"         Grid.Column="11" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
         <WaterControl:WaterMeters     x:Name="UserControlWaterMeters"     Grid.Column="12" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:ReportSubAllPeriods x:Name="UserControlReportSubAllPeriods"    Grid.Column="13" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:ReportSubAllPeriods x:Name="UserControlSendSmsToDebtors"    Grid.Column="14" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
     </Grid>    
 </Window>

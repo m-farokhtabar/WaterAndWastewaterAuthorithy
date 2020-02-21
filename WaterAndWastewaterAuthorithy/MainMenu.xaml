@@ -191,6 +191,25 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <Button Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="1" Click="Button_Click" Margin="5 5 5 5" Tag="Reports" IsTabStop="False" Visibility="Hidden">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border Style="{StaticResource ResourceKey=MainMenuButtonMiddleLeft}">
+                        <Grid Margin="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Grid.Row="0" Source="Images/MainMenu/SendSms.png" Width="64" Height="64"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource ResourceKey=TextOfMainMenuButton}">ارسال پیامک به بدهکاران</TextBlock>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
         
         <Button Grid.Column="0" Grid.Row="3" Background="DarkOrange" Click="Button_Click" Margin="5 5 5 5"  Tag="Settings" IsTabStop="False">
             <Button.Template>

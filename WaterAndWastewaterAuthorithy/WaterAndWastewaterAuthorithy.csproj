@@ -222,6 +222,12 @@
     <Compile Include="Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReportSubAllPeriods.xaml.cs">
+      <DependentUpon>ReportSubAllPeriods.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SendSmsToDebtors.xaml.cs">
+      <DependentUpon>SendSmsToDebtors.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -303,6 +309,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ReportSubAllPeriods.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -320,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SendSmsToDebtors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -418,6 +432,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Reports\Customers.mrt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\OneSubBillForAllPeriod.mrt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Reports\Subscriptions.mrt">
@@ -790,6 +807,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MainMenu\WaterMeter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MainMenu\SendSms.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Windows\Toolbar\SendSms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Windows\Toolbar\SendSmsSelected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

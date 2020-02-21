@@ -179,6 +179,14 @@ namespace WaterAndWastewaterAuthorithy.Presentation
                     MainWindowApp.UserControlAbout.Visibility = Visibility.Hidden;
                     MainWindowApp.About.Width = new GridLength(0);
                     break;
+                case "ReportSubAllPeriods":
+                    MainWindowApp.UserControlReportSubAllPeriods.Visibility = Visibility.Hidden;
+                    MainWindowApp.ReportSubAllPeriods.Width = new GridLength(0);
+                    break;
+                case "SendSmsToDebtors":
+                    MainWindowApp.UserControlSendSmsToDebtors.Visibility = Visibility.Hidden;
+                    MainWindowApp.SendSmsToDebtors.Width = new GridLength(0);
+                    break;                    
             }
             switch (Destination)
             {
@@ -297,6 +305,16 @@ namespace WaterAndWastewaterAuthorithy.Presentation
                     MainWindowApp.About.Width = new GridLength(920);
                     MainWindowApp.UserControlAbout.Visibility = Visibility.Visible;
                     MainWindowApp.UserControlAbout.ButtonReturn.Focus();
+                    break;
+                case "ReportSubAllPeriods":
+                    MainWindowApp.ReportSubAllPeriods.Width = new GridLength(920);
+                    MainWindowApp.UserControlReportSubAllPeriods.Visibility = Visibility.Visible;
+                    MainWindowApp.UserControlReportSubAllPeriods.ButtonReturn.Focus();
+                    break;
+                case "SendSmsToDebtors":
+                    MainWindowApp.SendSmsToDebtors.Width = new GridLength(920);
+                    MainWindowApp.UserControlSendSmsToDebtors.Visibility = Visibility.Visible;
+                    MainWindowApp.UserControlSendSmsToDebtors.ButtonReturn.Focus();
                     break;
             }
         }

@@ -347,7 +347,7 @@ namespace WaterAndWastewaterAuthorithy.Presentation
         public static string GetDeadLinePaymentDate()
         {
             PersianCalendar HijriDate = new PersianCalendar();
-            DateTime Dt = HijriDate.AddDays(DateTime.Now, 10);
+            DateTime Dt = HijriDate.AddDays(DateTime.Now, 12);
             string Date = HijriDate.GetYear(Dt) + "/" + HijriDate.GetMonth(Dt).ToString("00") + "/" + HijriDate.GetDayOfMonth(Dt).ToString("00");
             return Date;
         }

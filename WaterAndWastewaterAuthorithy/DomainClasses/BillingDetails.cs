@@ -56,5 +56,16 @@ namespace WaterAndWastewaterAuthorithy.DomainClasses
                         return "پرداخت شده";
             }
         }
+        public string BillStatusText
+        {
+            get
+            {
+                if (Status == BillsStatus.ReceivableFull || Status == BillsStatus.ReceivableNotMatch)
+                    return "پرداخت شده";
+                else
+                    return "عدم پرداخت";
+            }
+        }
+        public string Address { set; get; }
     }
 }

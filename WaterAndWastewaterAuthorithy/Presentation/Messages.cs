@@ -192,6 +192,10 @@ namespace WaterAndWastewaterAuthorithy.Presentation
         public static string ReportError = "امکان گزارش گیری از لیست مورد نظر وجود ندارد.";
         #endregion
 
+        #region RepotSubAllPeriods
+        public static string SubIdIsMandatory = "لطفا شماره اشتراک مورد نظر را وارد نمایید";
+        #endregion
+
         public static string ForceToInputStart = "ورود ";
         public static string ForceToInputEnd = " اجباری است لطفا مقدار آن را مشخص نمایید.";
         public static string ValueStringTooLongStart = "اندازه ";

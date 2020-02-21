@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WaterAndWastewaterAuthorithy.Presentation;
-using WaterAndWastewaterAuthorithy.Validations;
 using System.Data;
-using System.Data.Entity;
-using WaterAndWastewaterAuthorithy.DataLayers;
 using WaterAndWastewaterAuthorithy.DomainClasses;
 
 namespace WaterAndWastewaterAuthorithy
@@ -42,6 +30,8 @@ namespace WaterAndWastewaterAuthorithy
                 ButtonTalab_Click(null, null);
             if (e.Key == Key.D4 && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
                 ButtonNotBill_Click(null, null);
+            if (e.Key == Key.D5 && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                ButtonDore_Click(null, null);
 
             if (e.Key == Key.Escape)
                 ButtonReturn_Click(null, null);
@@ -261,6 +251,10 @@ namespace WaterAndWastewaterAuthorithy
             }
             this.Cursor = tmp;
         }
+        private void ButtonDore_Click(object sender, RoutedEventArgs e)
+        {
+            Ac.ShowWindow("Reports", "ReportSubAllPeriods");
+        }
 
         private void ButtonSub_KeyDown(object sender, KeyEventArgs e)
         {
@@ -286,9 +280,16 @@ namespace WaterAndWastewaterAuthorithy
         private void ButtonNotBill_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Tab && !(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
-                ButtonSub.Focus();
+                ButtonDore.Focus();
             if (e.Key == Key.Tab && (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
                 ButtonTalab.Focus();
+        }
+        private void ButtonDore_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab && !(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
+                ButtonSub.Focus();
+            if (e.Key == Key.Tab && (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
+                ButtonNotBill.Focus();
         }
         public int CheckPeriod()
         {

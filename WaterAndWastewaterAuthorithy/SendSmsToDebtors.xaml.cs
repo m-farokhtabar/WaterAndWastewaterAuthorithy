@@ -11,9 +11,9 @@ using System.Data;
 namespace WaterAndWastewaterAuthorithy
 {
     /// <summary>
-    /// Interaction logic for BillsPrint.xaml
+    /// Interaction logic for SendSmsToDebtors.xaml
     /// </summary>
-    public partial class BillsPrint : UserControl
+    public partial class SendSmsToDebtors : UserControl
     {
         System.Collections.Specialized.ListDictionary ControlsArray = new System.Collections.Specialized.ListDictionary();
         public Control FirstControl = null;
@@ -21,7 +21,7 @@ namespace WaterAndWastewaterAuthorithy
         string PrevHint = "";
 
         #region Loading
-        public BillsPrint()
+        public SendSmsToDebtors()
         {
             InitializeComponent();
             FirstControl = TextBoxSubScriptionIdFrom;
@@ -46,11 +46,11 @@ namespace WaterAndWastewaterAuthorithy
 
             ControlsArray.Add(DataGridView, new ControlsTab { Prev = TextBoxAddress, Next = null, Type = ControlsType.TextBoxText });
         }
-        private void UserControlBillsPrint_Loaded(object sender, RoutedEventArgs e)
+        private void UserControlSendSmsToDebtors_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
-        private void UserControlBillsPrint_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void UserControlSendSmsToDebtors_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             Commons.LoadComboBox(ComboBoxAccountType, "AccountTypesTb", "نوع کاربری");
             ComboBoxAccountType.SelectedIndex = 0;
@@ -228,11 +228,11 @@ namespace WaterAndWastewaterAuthorithy
             {
                 SubScriptionIdFromFlag = false;
                 string[] Tmp = TextBoxSubScriptionIdFrom.Text.Trim().Split(new char[] { '-' });
-                if (Tmp!=null && Tmp.Length==2)
+                if (Tmp != null && Tmp.Length == 2)
                     SubScriptionIdFromText = Convert.ToInt32(Tmp[0]).ToString("0000") + "-" + Convert.ToInt32(Tmp[1]).ToString("00000");
                 else
                 {
-                    MessageDialog Msg = new MessageDialog(Messages.PrintMessageTitleSubScription, Messages.ValueIsSubscriptionNumberStart + "از شماره اشتراک" + Messages.ValueIsSubscriptionNumberEnd , MessageDialogButtons.Ok, MessageDialogType.Warning, GridHeader.Background);
+                    MessageDialog Msg = new MessageDialog(Messages.PrintMessageTitleSubScription, Messages.ValueIsSubscriptionNumberStart + "از شماره اشتراک" + Messages.ValueIsSubscriptionNumberEnd, MessageDialogButtons.Ok, MessageDialogType.Warning, GridHeader.Background);
                     Msg.Owner = Window.GetWindow(this);
                     Msg.ShowDialog();
                     return;
@@ -423,7 +423,7 @@ namespace WaterAndWastewaterAuthorithy
         }
         private void ButtonReturn_Click(object sender, RoutedEventArgs e)
         {
-            Ac.ShowWindow("BillsPrint", "MainMenu");
+            Ac.ShowWindow("SendSmsToDebtors", "MainMenu");
         }
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
