@@ -67,5 +67,13 @@ namespace WaterAndWastewaterAuthorithy.DomainClasses
                 return Convert.ToInt32(Tmp[0]).ToString("0000") + "-" + Convert.ToInt32(Tmp[1]).ToString("00000");
             }
         }
+        public string CellPhone { set; get; }
+        public string FullName
+        {
+            get
+            {
+                return Name + " " + Family;
+            }
+        }
     }
 }

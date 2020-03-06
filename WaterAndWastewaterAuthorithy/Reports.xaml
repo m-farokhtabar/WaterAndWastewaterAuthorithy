@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ValidateControl="clr-namespace:WaterAndWastewaterAuthorithy.Validations"
              mc:Ignorable="d"
-             x:Name="UserControlReports" d:DesignHeight="265" d:DesignWidth="820" Margin="0 0 0 0" Background="#FFeffde9" Loaded="UserControlReports_Loaded" KeyDown="UserControl_KeyDown" IsVisibleChanged="UserControlReports_IsVisibleChanged">
+             x:Name="UserControlReports" d:DesignHeight="300" d:DesignWidth="820" Margin="0 0 0 0" Background="#FFeffde9" Loaded="UserControlReports_Loaded" KeyDown="UserControl_KeyDown" IsVisibleChanged="UserControlReports_IsVisibleChanged">
     <UserControl.BitmapEffect>
         <DropShadowBitmapEffect></DropShadowBitmapEffect>
     </UserControl.BitmapEffect>
     <Grid ShowGridLines ="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="55"></RowDefinition>
-            <RowDefinition x:Name="GridRowNew"     Height="170"></RowDefinition>
+            <RowDefinition x:Name="GridRowNew"     Height="205"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -55,6 +55,11 @@
                 </Button.Resources>
             </Button>
             <Button HorizontalAlignment="Center" x:Name="ButtonDore" Style="{StaticResource ResourceKey=DefaultButton}" Width="820" Content="گزارش سابقه قبوض یا دوره های یک اشتراک" Click="ButtonDore_Click" KeyDown="ButtonDore_KeyDown" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"  ToolTip="گزارش سابقه قبوض یا دوره های یک اشتراک [Ctrl+5]">
+                <Button.Resources>
+                    <ImageSource x:Key="ImageButton">Images/Buttons/DoReport.png</ImageSource>
+                </Button.Resources>
+            </Button>
+            <Button HorizontalAlignment="Center" x:Name="ButtonReadingList" Style="{StaticResource ResourceKey=DefaultButton}" Width="820" Content="گزارش لیست قرائت" Click="ButtonReadingList_Click" KeyDown="ButtonReadingList_KeyDown" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"  ToolTip="گزارش لیست قرائت [Ctrl+6]">
                 <Button.Resources>
                     <ImageSource x:Key="ImageButton">Images/Buttons/DoReport.png</ImageSource>
                 </Button.Resources>

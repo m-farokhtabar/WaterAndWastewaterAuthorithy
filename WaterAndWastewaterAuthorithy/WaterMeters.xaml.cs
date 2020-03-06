@@ -26,7 +26,7 @@ namespace WaterAndWastewaterAuthorithy
         System.Collections.Specialized.ListDictionary ControlsArraySearch = new System.Collections.Specialized.ListDictionary();
         public TextBox FirstControl = null;
         public Control FirstControlSearch = null;
-        bool FirstLoad = true;
+        //bool FirstLoad = true;
         bool SearchAgain = false;
 
         SubscriptionBilling CurrentSubscriptionBilling;
@@ -916,7 +916,7 @@ namespace WaterAndWastewaterAuthorithy
                     }
                 }
             }
-            catch (Exception Ex)
+            catch
             {
                 Msg = new MessageDialog(Messages.SaveMessageTitleSingleBilling, Messages.ErrorSendingDataToDatabase, MessageDialogButtons.Ok, MessageDialogType.Error, GridHeader.Background);
                 Msg.Owner = Window.GetWindow(this);

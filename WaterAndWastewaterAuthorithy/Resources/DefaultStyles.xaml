@@ -248,7 +248,7 @@
                                 <ColumnDefinition Width="26"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image     Grid.Column="0" Grid.Row="0" Source="{DynamicResource ResourceKey=ImageButton}" Width="16" Height="16"/>
+                            <Image Grid.Column="0" Grid.Row="0" Source="{DynamicResource ResourceKey=ImageButton}" Width="16" Height="16"/>
                             <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=TextOfMainMenuButton}" VerticalAlignment="Center" Text="{TemplateBinding Property=Content}"/>
                         </Grid>
                     </Border>

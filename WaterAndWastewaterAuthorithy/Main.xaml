@@ -27,6 +27,7 @@
             <ColumnDefinition Width="0"   x:Name="WaterMeters"     x:FieldModifier="public"></ColumnDefinition>
             <ColumnDefinition Width="0"   x:Name="ReportSubAllPeriods"  x:FieldModifier="public"></ColumnDefinition>
             <ColumnDefinition Width="0"   x:Name="SendSmsToDebtors"     x:FieldModifier="public"></ColumnDefinition>
+            <ColumnDefinition Width="0"   x:Name="ReadingListReport"     x:FieldModifier="public"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <WaterControl:MainMenu        x:Name="UserControlMainMenu"        Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <WaterControl:Customers       x:Name="UserControlCustomers"       Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"  x:FieldModifier="public"  />
@@ -42,6 +43,7 @@
         <WaterControl:Reports         x:Name="UserControlReports"         Grid.Column="11" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
         <WaterControl:WaterMeters     x:Name="UserControlWaterMeters"     Grid.Column="12" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
         <WaterControl:ReportSubAllPeriods x:Name="UserControlReportSubAllPeriods"    Grid.Column="13" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
-        <WaterControl:ReportSubAllPeriods x:Name="UserControlSendSmsToDebtors"    Grid.Column="14" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:SendSmsToDebtors x:Name="UserControlSendSmsToDebtors"    Grid.Column="14" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        <WaterControl:ReadingListReport x:Name="UserControlReadingListReport"    Grid.Column="15" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
     </Grid>    
 </Window>

@@ -32,6 +32,8 @@ namespace WaterAndWastewaterAuthorithy
                 ButtonNotBill_Click(null, null);
             if (e.Key == Key.D5 && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
                 ButtonDore_Click(null, null);
+            if (e.Key == Key.D6 && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                ButtonReadingList_KeyDown(null, null);
 
             if (e.Key == Key.Escape)
                 ButtonReturn_Click(null, null);
@@ -255,6 +257,10 @@ namespace WaterAndWastewaterAuthorithy
         {
             Ac.ShowWindow("Reports", "ReportSubAllPeriods");
         }
+        private void ButtonReadingList_Click(object sender, RoutedEventArgs e)
+        {
+            Ac.ShowWindow("Reports", "ReadingListReport");
+        }
 
         private void ButtonSub_KeyDown(object sender, KeyEventArgs e)
         {
@@ -287,10 +293,18 @@ namespace WaterAndWastewaterAuthorithy
         private void ButtonDore_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Tab && !(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
-                ButtonSub.Focus();
+                ButtonReadingList.Focus();
             if (e.Key == Key.Tab && (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
                 ButtonNotBill.Focus();
         }
+        private void ButtonReadingList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab && !(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
+                ButtonSub.Focus();
+            if (e.Key == Key.Tab && (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
+                ButtonDore.Focus();
+        }
+        
         public int CheckPeriod()
         {
             Commons.SetPeriod();

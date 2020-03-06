@@ -12,7 +12,7 @@
     <Grid ShowGridLines ="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="55"></RowDefinition>
-            <RowDefinition x:Name="GridRowNew"     Height="440"></RowDefinition>
+            <RowDefinition x:Name="GridRowNew"     Height="490"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -37,7 +37,7 @@
                     <ImageSource x:Key="ImageButton">Images/Windows/Toolbar/Search.png</ImageSource>
                 </Button.Resources>
             </Button>
-            <Button   x:Name="ButtonReport" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButtonGreen}"  Margin="5 0 0 0" Width="66" Content="ارسال پیامک" Tag="ImageReportSelected" Click="ButtonReport_Click"  ToolTip="ارسال پیامک کلید میان بر [F8]" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+            <Button   x:Name="ButtonReport" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButtonGreen}"  Margin="5 0 0 0" Width="66" Content="ارسال پیامک" Tag="ImageSendSms" Click="ButtonSendSms_Click"  ToolTip="ارسال پیامک کلید میان بر [F8]" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
                 <Button.Resources>
                     <ImageSource x:Key="ImageButton">Images/Windows/Toolbar/SendSms.png</ImageSource>
                 </Button.Resources>
@@ -51,6 +51,8 @@
                 <RowDefinition Height="35"></RowDefinition>
                 <RowDefinition Height="35"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
                 <RowDefinition Height="260"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -100,46 +102,7 @@
                 </TextBox.Text>
             </TextBox>
 
-            <Image  Margin="0 5 0 0" Grid.Column="4" Grid.Row="0" Source="Images/Windows/Validate/ForceToSearch.png"  Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            جستجوی کد پرونده
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <TextBox x:Name="TextBoxBillId"  Margin="0 5 0 0" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="9" Tag="جستجوی کد پرونده" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" FlowDirection="LeftToRight" TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput" LostFocus="TextBox_LostFocus" GotFocus="TextBox_GotFocus">
-                <TextBox.Text>
-                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <ValidateControl:NumberValidate Min="1" Max="10" IsEmpty="True" Title="کد پرونده"/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
             <Image  Margin="0 5 0 0" Grid.Column="0" Grid.Row="1" Source="Images/Windows/Validate/ForceToSearch.png"  Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            جستجوی کد مشترک
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <TextBox x:Name="TextBoxCustomerId"  Margin="0 5 0 0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="9" Tag="جستجوی کد مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" FlowDirection="LeftToRight" TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput" LostFocus="TextBox_LostFocus" GotFocus="TextBox_GotFocus">
-                <TextBox.Text>
-                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <ValidateControl:NumberValidate Min="1" Max="10" IsEmpty="true" Title="کد مشترک"/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-
-            <Image  Margin="0 5 0 0" Grid.Column="2" Grid.Row="1" Source="Images/Windows/Validate/ForceToSearch.png"  Width="16" Height="16">
                 <Image.ToolTip>
                     <ToolTip Style="{StaticResource ImageTooltip}">
                         <ToolTip.Content>
@@ -148,10 +111,10 @@
                     </ToolTip>
                 </Image.ToolTip>
             </Image>
-            <TextBox x:Name="TextBoxName"  Margin="0 5 0 0" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="30" Tag="جستجوی نام مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
+            <TextBox x:Name="TextBoxName"  Margin="0 5 0 0" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="30" Tag="جستجوی نام مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
 
 
-            <Image     Margin="0 5 0 0" Grid.Column="4" Grid.Row="1" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
+            <Image     Margin="0 5 0 0" Grid.Column="2" Grid.Row="1" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
                 <Image.ToolTip>
                     <ToolTip Style="{StaticResource ImageTooltip}">
                         <ToolTip.Content>
@@ -160,9 +123,9 @@
                     </ToolTip>
                 </Image.ToolTip>
             </Image>
-            <TextBox x:Name="TextBoxFamily"  Margin="0 5 0 0" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="40" Tag="جستجوی نام خانوادگی مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
+            <TextBox x:Name="TextBoxFamily"  Margin="0 5 0 0" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="40" Tag="جستجوی نام خانوادگی مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
 
-            <Image     Margin="0 5 0 0" Grid.Column="0" Grid.Row="2" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
+            <Image     Margin="0 5 0 0" Grid.Column="4" Grid.Row="1" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
                 <Image.ToolTip>
                     <ToolTip Style="{StaticResource ImageTooltip}">
                         <ToolTip.Content>
@@ -171,20 +134,10 @@
                     </ToolTip>
                 </Image.ToolTip>
             </Image>
-            <TextBox   x:Name="TextBoxFather" Margin="0 5 0 0" Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="30" Tag="جستجوی نام پدر مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
+            <TextBox   x:Name="TextBoxFather" Margin="0 5 0 0" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="30" Tag="جستجوی نام پدر مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
 
-            <Image     Grid.Column="2" Grid.Row="2" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            جستجوی نوع کاربری
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <ComboBox Validation.ErrorTemplate="{StaticResource ComboValidationTemplate}" Text="جستجوی نوع کاربری" x:Name="ComboBoxAccountType" Style="{StaticResource ResourceKey=ComboBoxTheme}" Grid.Column="3" Grid.Row="2" Width="165" BorderThickness="1" KeyDown="TextBox_KeyDown" PreviewKeyDown="ComboBox_PreviewKeyDown" GotFocus="ComboBox_GotFocus" Tag="جستجوی نوع کاربری"/>
 
-            <Image     Grid.Column="4" Grid.Row="2" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
+            <Image     Grid.Column="4" Grid.Row="0" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
                 <Image.ToolTip>
                     <ToolTip Style="{StaticResource ImageTooltip}">
                         <ToolTip.Content>
@@ -193,7 +146,7 @@
                     </ToolTip>
                 </Image.ToolTip>
             </Image>
-            <TextBox  x:Name="TextBoxMeliCode" Grid.Column="5" Grid.Row="2" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="10" Tag="جستجوی کد ملی مشترک" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" GotFocus="TextBox_GotFocus" FlowDirection="LeftToRight">
+            <TextBox  x:Name="TextBoxMeliCode" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="10" Tag="جستجوی کد ملی مشترک" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" GotFocus="TextBox_GotFocus" FlowDirection="LeftToRight">
                 <TextBox.Text>
                     <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
@@ -203,80 +156,50 @@
                 </TextBox.Text>
             </TextBox>
 
-            <Image     Grid.Column="0" Grid.Row="3" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
+            <Image     Grid.Column="0" Grid.Row="2" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
                 <Image.ToolTip>
                     <ToolTip Style="{StaticResource ImageTooltip}">
                         <ToolTip.Content>
-                            جستجوی کد پستی مشترک
+                            جستجوی تلفن همراه
                         </ToolTip.Content>
                     </ToolTip>
                 </Image.ToolTip>
             </Image>
-            <TextBox  x:Name="TextBoxPostalCode" Grid.Column="1" Grid.Row="3" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="10" Tag="جستجوی کد پستی مشترک" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" GotFocus="TextBox_GotFocus" FlowDirection="LeftToRight">
+            <TextBox  x:Name="TextBoxCellPhone" Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="11" Tag="جستجوی تلفن همراه" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" GotFocus="TextBox_GotFocus" FlowDirection="LeftToRight">
                 <TextBox.Text>
                     <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
-                            <ValidateControl:NumberValidate Min="0" Max="10" IsEmpty="True" Title="کد پستی"/>
+                            <ValidateControl:NumberValidate Min="11" Max="11" IsEmpty="False" Title="تلفن همراه"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
 
-            <Image     Grid.Column="2" Grid.Row="3" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            جستجوی از تاریخ قرائت اشتراک
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <TextBox  x:Name="TextBoxDateFrom" Grid.Column="3" Grid.Row="3" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="10" Tag="جستجوی از تاریخ قرائت قبلی اشتراک" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" TextChanged="TextBoxNumberReadDate_TextChanged" FlowDirection="LeftToRight" GotFocus="TextBox_GotFocus">
-                <TextBox.Text>
-                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <ValidateControl:PersianDateValidate IsEmpty="true" Title="تاریخ قرائت قبلی"/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <Image     Grid.Column="4" Grid.Row="3" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            جستجوی تا تاریخ قرائت اشتراک
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <TextBox  x:Name="TextBoxDateTo" Grid.Column="5" Grid.Row="3" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="10" Tag="جستجوی تا تاریخ قرائت قبلی اشتراک" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" TextChanged="TextBoxNumberReadDate_TextChanged" FlowDirection="LeftToRight" GotFocus="TextBox_GotFocus">
-                <TextBox.Text>
-                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
-                        <Binding.ValidationRules>
-                            <ValidateControl:PersianDateValidate IsEmpty="True" Title="تاریخ قرائت قبلی"/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <Image     Grid.Column="0" Grid.Row="4" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            جستجوی آدرس اشتراک
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <TextBox    x:Name="TextBoxAddress" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource ResourceKey=EditOfFields}" Width="329" MaxLength="250" Tag="جستجوی آدرس اشتراک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus" Height="26" Margin="0,7"/>
-            <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" x:Name="ButtonBeginSearch" Style="{StaticResource ResourceKey=DefaultButton}" Width="186" Content="جستجو در قبوض" Click="ButtonBeginSearch_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="جستجو در قبوض [F3]" HorizontalAlignment="Left" Margin="0,3">
+            <Button Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" x:Name="ButtonBeginSearch" Style="{StaticResource ResourceKey=DefaultButton}" Width="186" Content="جستجو در قبوض" Click="ButtonBeginSearch_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="جستجو در قبوض [F3]" HorizontalAlignment="Left" Margin="0,3">
                 <Button.Resources>
                     <ImageSource x:Key="ImageButton">Images/Buttons/BeginSearch.png</ImageSource>
                 </Button.Resources>
             </Button>
 
-            <DataGrid  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="6" x:Name="DataGridView" Height="260" Width="810" IsTabStop="False"
+            <Image  Margin="0 5 0 0" Grid.Column="0" Grid.Row="4" Source="Images/Windows/Validate/ForceToFill.png"  Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            متن پیامک جهت ارسال به کاربران بدهکار
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox    x:Name="TextBoxSmsMessage" Grid.Column="1" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="4" Style="{StaticResource ResourceKey=EditOfFields}" Width="550" Height="80" MaxLength="500" Tag="لطفا متن پیامک جهت ارسال به کاربران بدهکار را وارد نمایید." LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus" AcceptsReturn="True" AcceptsTab="True" MaxLines="10"  Margin="0,5,0,10" >
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:StringValidate Max="500" IsEmpty="false" Title="متن پیامک جهت ارسال به کاربران بدهکار"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <DataGrid  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" x:Name="DataGridView" Height="260" Width="810" IsTabStop="False"
                        Style="{StaticResource ResourceKey=DataGridCustomers}" PreviewKeyDown="DataGridView_PreviewKeyDown" RowHeight="40">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="شماره پرونده" Width="54" Binding="{Binding Path=BillId}" SortDirection="Ascending"></DataGridTextColumn>
@@ -531,12 +454,12 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="نام : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" VerticalAlignment="Center" />
-                            <TextBlock Grid.Row="0" Grid.Column="2" Text="نام خانوادگی : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=Family}" VerticalAlignment="Center" />
-                            <TextBlock Grid.Row="0" Grid.Column="4" Text="نام پدر : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" Text="{Binding Path=Father}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="نام و نام خانوادگی : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=FullName}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="نام پدر : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=Father}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text="شماره همراه : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding Path=CellPhone}" VerticalAlignment="Center" />
 
                             <TextBlock Grid.Row="1" Grid.Column="0" Margin="7 0 0 0" Text="نوع کاربری : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
                             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=AccountTypeName}" VerticalAlignment="Center" />
@@ -551,7 +474,7 @@
             </DataGrid>
         </Grid>
 
-        <Border Grid.Column="0" Grid.Row="3" Background="{StaticResource ResourceKey=BrushBackgroundFooter}" Padding="15 0 15 0">
+        <Border Grid.Column="0" Grid.Row="2" Background="{StaticResource ResourceKey=BrushBackgroundFooter}" Padding="15 0 15 0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>

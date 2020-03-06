@@ -76,7 +76,7 @@ namespace WaterAndWastewaterAuthorithy
                 else
                     throw new Exception();
             }
-            catch(Exception Ex)
+            catch
             {
                 MessageDialog Msg = new MessageDialog(Messages.ReportTitleDialog, Messages.ReportError, MessageDialogButtons.Ok, MessageDialogType.Error, HeaderColor);
                 Msg.Owner = Window.GetWindow(this);

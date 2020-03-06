@@ -196,6 +196,12 @@ namespace WaterAndWastewaterAuthorithy.Presentation
         public static string SubIdIsMandatory = "لطفا شماره اشتراک مورد نظر را وارد نمایید";
         #endregion
 
+        #region SendSmsToDebtors
+        public static string TitleSendSmsToDebtors = "ارسال پیامک به مشترکین بدهکار";
+        public static string DataNotFoundForSms = "اطلاعاتی جهت ارسال پیامک وجود ندارد.";
+        public static string AreyouSureToSendSms = "آیا پیامک برای لیست مورد نظر ارسال شود؟";
+        #endregion
+
         public static string ForceToInputStart = "ورود ";
         public static string ForceToInputEnd = " اجباری است لطفا مقدار آن را مشخص نمایید.";
         public static string ValueStringTooLongStart = "اندازه ";
