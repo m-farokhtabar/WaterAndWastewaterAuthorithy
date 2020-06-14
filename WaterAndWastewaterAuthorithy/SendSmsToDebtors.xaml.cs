@@ -42,17 +42,22 @@ namespace WaterAndWastewaterAuthorithy
             TextBoxSmsMessage.Text = Commons.WaterAndWastewaterAuthorityName.Trim() + "\n" +
                                      "نام مشترک:" + " " + "[Name] [Family]" + "\n" +
                                      "شماره اشتراک:" + " " + "[SubscriptionId]" + "\n" +
-                                     "شماره کنتور:" + " " + "[WaterMeterSerial]" + "\n" +
-                                     "تاریخ قرائت از:" + " " + "[PrevReadDate]" + " " + "تا:" + " " + "[CurrentReadDate]" + "\n" +
-                                     "میزان مصرف:" + " " + "[Consumption]" + "\n" +
-                                     "مبلغ قابل پرداخت:" + " " + "[Debt]" + "\n" +
-                                     "مهلت پرداخت:" + " " + "[PaymentDeadLine]" + "\n" +
-                                     "نحوه واریز:" + " " + "بانک صادرات" + " " + "0103076808008";
-
+                                     //"شماره کنتور:" + " " + "[WaterMeterSerial]" + "\n" +
+                                     //"تاریخ قرائت از:" + " " + "[PrevReadDate]" + " " + "تا:" + " " + "[CurrentReadDate]" + "\n" +
+                                     "تاریخ آخرین قرائت:" + " " + "[CurrentReadDate]" + "\n" +
+                                     //"میزان مصرف:" + " " + "[Consumption]" + "\n" +
+                                     "مبلغ قابل پرداخت:" + " " + "[Debt]" + " " + "ریال";
+                                    //"مهلت پرداخت:" + " " + "[PaymentDeadLine]" +  "\n"
+                                    //"نحوه واریز:" + " " + "بانک صادرات" + " " + "0103076808008";
         }
         private void UserControlSendSmsToDebtors_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void UserControlSendSmsToDebtors_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            DoSearch();
+            FirstControl.Focus();
         }
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
@@ -190,11 +195,6 @@ namespace WaterAndWastewaterAuthorithy
             }
         }
         #endregion
-        private void UserControlSendSmsToDebtors_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            DataGridView.ItemsSource = Commons.Db.BillsVws.Where(x => x.Debt > 0).ToList().OrderBy(x => x.SortableId);
-            FirstControl.Focus();
-        }
 
 
         private void DoSearch()
@@ -271,9 +271,8 @@ namespace WaterAndWastewaterAuthorithy
                 Cellphone = TextBoxCellPhone.Text.Trim();
             }
             if (SubScriptionIdFromFlag || SubScriptionIdToFlag || NameFlag || FamilyFlag || FatherFlag || NationalCodeFlag)
-            {
-                Sql = "Select * from BillsVw";// Where " + Sql;
-                DataGridView.ItemsSource = Commons.Db.BillsVws.SqlQuery(Sql).ToList().Where(
+            {                
+                DataGridView.ItemsSource = Commons.Db.BillsVws.AsNoTracking().ToList().Where(
                                            x => (SubScriptionIdFromFlag == true || x.SortableId.CompareTo(SubScriptionIdFromText) >= 0) &&
                                                 (SubScriptionIdToFlag == true || x.SortableId.CompareTo(SubScriptionIdToText) <= 0) &&
                                                 (NameFlag == true || x.Name.Contains(NameText)) &&

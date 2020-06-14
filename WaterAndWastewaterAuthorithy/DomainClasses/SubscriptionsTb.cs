@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
 
 namespace WaterAndWastewaterAuthorithy.DomainClasses
 {
@@ -106,11 +102,28 @@ namespace WaterAndWastewaterAuthorithy.DomainClasses
             }
         }
         [NotMapped]
+        public string CellPhone
+        {
+            get
+            {
+                return Customer.CellPhone;
+            }
+        }
+        [NotMapped]
         public string AccountName
         {
             get
             {
                 return AccountType.Name;
+            }
+        }
+        [NotMapped]
+        public string SortableId
+        {
+            get
+            {
+                string[] Tmp = Id.Split(new char[] { '-' });
+                return Convert.ToInt32(Tmp[0]).ToString("0000") + "-" + Convert.ToInt32(Tmp[1]).ToString("00000");
             }
         }
     }

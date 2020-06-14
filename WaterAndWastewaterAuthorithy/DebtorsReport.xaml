@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="WaterAndWastewaterAuthorithy.ReadingListReport"
+﻿<UserControl x:Class="WaterAndWastewaterAuthorithy.DebtorsReport"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ValidateControl="clr-namespace:WaterAndWastewaterAuthorithy.Validations"
              mc:Ignorable="d"
-             x:Name="UserControlReadingListReport" d:DesignHeight="590" d:DesignWidth="820" Margin="0 0 0 0" Background="#FFeffde9" Loaded="UserControlBillsPrint_Loaded" IsVisibleChanged="UserControlBillsPrint_IsVisibleChanged" KeyDown="UserControl_KeyDown">
+             x:Name="UserControlDebtorsReport" d:DesignHeight="590" d:DesignWidth="900" Margin="0 0 0 0" Background="#FFeffde9" Loaded="UserControlBillsPrint_Loaded" IsVisibleChanged="UserControlBillsPrint_IsVisibleChanged" KeyDown="UserControl_KeyDown">
     <UserControl.BitmapEffect>
         <DropShadowBitmapEffect></DropShadowBitmapEffect>
     </UserControl.BitmapEffect>
@@ -30,7 +30,7 @@
                 <ColumnDefinition Width ="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image     Grid.Column="0" Grid.Row="0" Source="Images/MainMenu/Print.png" Margin="0 0 0 0" Width="32" Height="32"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=TitleOfWindows}">چاپ لیست قرائت</TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=TitleOfWindows}">چاپ لیست بدهکاران با فیلتر مبلغ</TextBlock>
 
             <Button  x:Name="ButtonSearch"  Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=HeaderButtonGreen}"  Margin="10 0 0 0" Width="76" Content="جستجو" Tag="ImageSearchSelected"  ToolTip="جستجو کلید میان بر [F7]" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
                 <Button.Resources>
@@ -57,7 +57,7 @@
                 <ColumnDefinition Width="20"></ColumnDefinition>
                 <ColumnDefinition Width="255"></ColumnDefinition>
                 <ColumnDefinition Width="20"></ColumnDefinition>
-                <ColumnDefinition Width="240"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Image  Margin="0 5 0 0" Grid.Column="0" Grid.Row="0" Source="Images/Windows/Validate/ForceToSearch.png"  Width="16" Height="16">
@@ -97,76 +97,65 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-
-            <Image     Grid.Column="4" Grid.Row="0" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
+            
+            <Image     Grid.Column="0" Grid.Row="1" Source="Images/Windows/Validate/ForceToFill.png" Width="16" Height="16">
                 <Image.ToolTip>
                     <ToolTip Style="{StaticResource ImageTooltip}">
                         <ToolTip.Content>
-                            جستجوی کد ملی مشترک
+                            جستجوی مبلغ قابل پرداخت از
                         </ToolTip.Content>
                     </ToolTip>
                 </Image.ToolTip>
             </Image>
-            <TextBox  x:Name="TextBoxMeliCode" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="10" Tag="جستجوی کد ملی مشترک" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" GotFocus="TextBox_GotFocus" FlowDirection="LeftToRight">
+            <TextBox  x:Name="TextBoxPayableFrom" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="10" Tag="جستجوی مبلغ قابل پرداخت از" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" FlowDirection="LeftToRight" GotFocus="TextBox_GotFocus">
                 <TextBox.Text>
                     <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
                         <Binding.ValidationRules>
-                            <ValidateControl:NumberValidate Min="10" Max="10" IsEmpty="True" Title="کد ملی"/>
+                            <ValidateControl:NumberValidate Min="1" Max="10" IsEmpty="False" Title="جستجوی مبلغ قابل پرداخت از"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            
+            <Image     Grid.Column="2" Grid.Row="1" Source="Images/Windows/Validate/ForceToFill.png" Width="16" Height="16">
+                <Image.ToolTip>
+                    <ToolTip Style="{StaticResource ImageTooltip}">
+                        <ToolTip.Content>
+                            جستجوی مبلغ قابل پرداخت تا
+                        </ToolTip.Content>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <TextBox  x:Name="TextBoxPayableTo" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="10" Tag="جستجوی مبلغ قابل پرداخت تا" LostFocus="TextBox_LostFocus" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" FlowDirection="LeftToRight" GotFocus="TextBox_GotFocus">
+                <TextBox.Text>
+                    <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <ValidateControl:NumberValidate Min="1" Max="10" IsEmpty="False" Title="جستجوی مبلغ قابل پرداخت تا"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
 
-            <Image  Margin="0 5 0 0" Grid.Column="0" Grid.Row="1" Source="Images/Windows/Validate/ForceToSearch.png"  Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            جستجوی نام مشترک
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <TextBox x:Name="TextBoxName"  Margin="0 5 0 0" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="30" Tag="جستجوی نام مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
 
-            <Image     Margin="0 5 0 0" Grid.Column="2" Grid.Row="1" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            جستجوی نام خانوادگی مشترک
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <TextBox x:Name="TextBoxFamily"  Margin="0 5 0 0" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="40" Tag="جستجوی نام خانوادگی مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
-
-            <Image     Margin="0 5 0 0" Grid.Column="4" Grid.Row="1" Source="Images/Windows/Validate/ForceToSearch.png" Width="16" Height="16">
-                <Image.ToolTip>
-                    <ToolTip Style="{StaticResource ImageTooltip}">
-                        <ToolTip.Content>
-                            ورود نام پدر اجباری می باشد.
-                        </ToolTip.Content>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-            <TextBox   x:Name="TextBoxFather" Margin="0 5 0 0" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=EditOfFields}" Width="165" MaxLength="30" Tag="جستجوی نام پدر مشترک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus"/>
-            
             <Button Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" x:Name="ButtonBeginSearch" Style="{StaticResource ResourceKey=DefaultButton}" Width="186" Content="جستجو در قبوض" Click="ButtonBeginSearch_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="جستجو در قبوض [F3]" HorizontalAlignment="Left" Margin="0,3">
                 <Button.Resources>
                     <ImageSource x:Key="ImageButton">Images/Buttons/BeginSearch.png</ImageSource>
                 </Button.Resources>
             </Button>
 
-            <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="6" x:Name="DataGridView" Height="260" Width="810" IsTabStop="False"
+            <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="6" x:Name="DataGridView" Height="260" Width="890" IsTabStop="False"
                        Style="{StaticResource ResourceKey=DataGridCustomers}" PreviewKeyDown="DataGridView_PreviewKeyDown" RowHeight="40">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="شماره اشتراک" Width="70" Binding="{Binding Path=Id}" SortDirection="Ascending"></DataGridTextColumn>
-                    <DataGridTextColumn Header="نام" Width="90" Binding="{Binding Path=Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="نام خانوادگی" Width="120" Binding="{Binding Path=Family}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="نام پدر" Width="90" Binding="{Binding Path=Father}" ></DataGridTextColumn>
-                    <DataGridTextColumn Header="نام کاربری" Width="90" Binding="{Binding Path=AccountName}" ></DataGridTextColumn>
-                    <DataGridTextColumn Header="قرائت فعلی" Width="90" Binding="{Binding Path=CurrentNumber}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="تاریخ قرائت فعلی" Width="90" Binding="{Binding Path=CurrentReadDate}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="مبلغ قابل پرداخت(بدهی)" Width="151" Binding="{Binding Path=Debt}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="نام" Width="80" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="نام خانوادگی" Width="95" Binding="{Binding Path=Family}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="نام پدر" Width="80" Binding="{Binding Path=Father}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="نام کاربری" Width="80" Binding="{Binding Path=AccountName}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="قرائت قبلی" Width="80" Binding="{Binding Path=PrevNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="تاریخ قرائت قبلی" Width="85" Binding="{Binding Path=PrevReadDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="قرائت فعلی" Width="80" Binding="{Binding Path=CurrentNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="تاریخ قرائت فعلی" Width="85" Binding="{Binding Path=CurrentReadDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="مبلغ قابل پرداخت(بدهی)" Width="135" Binding="{Binding Path=Debt}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
@@ -178,12 +167,16 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="کد پستی : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=PostalCode}" VerticalAlignment="Center" />
-                            <TextBlock Grid.Row="0" Grid.Column="2" Text=" آدرس : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=Address}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="شماره همراه : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=CellPhone}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text=" کد پستی : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=PostalCode}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text=" آدرس : " VerticalAlignment="Center" Style="{StaticResource ResourceKey=TitleDetails}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding Path=Address}" VerticalAlignment="Center" />
                         </Grid>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
@@ -213,3 +206,4 @@
         </Border>
     </Grid>
 </UserControl>
+

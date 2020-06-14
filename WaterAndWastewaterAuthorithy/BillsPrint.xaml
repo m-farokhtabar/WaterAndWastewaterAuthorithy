@@ -270,7 +270,7 @@
                 </Image.ToolTip>
             </Image>
             <TextBox    x:Name="TextBoxAddress" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource ResourceKey=EditOfFields}" Width="329" MaxLength="250" Tag="جستجوی آدرس اشتراک" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationTemplateTextBox}" KeyDown="TextBox_KeyDown" GotFocus="TextBox_GotFocus" Height="26" Margin="0,7"/>
-            <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" x:Name="ButtonBeginSearch" Style="{StaticResource ResourceKey=DefaultButton}" Width="186" Content="جستجو در قبوض" Click="ButtonBeginSearch_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="جستجو در قبوض [F3]" HorizontalAlignment="Left" Margin="0,3">
+            <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" x:Name="ButtonBeginSearch" Style="{StaticResource ResourceKey=DefaultButton}" Width="186" Content="جستجو در قبوض" Click="ButtonBeginSearch_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" ToolTip="جستجو در قبوض [F3]" HorizontalAlignment="Left" Margin="0,0,0,3" VerticalAlignment="Bottom">
                 <Button.Resources>
                     <ImageSource x:Key="ImageButton">Images/Buttons/BeginSearch.png</ImageSource>
                 </Button.Resources>

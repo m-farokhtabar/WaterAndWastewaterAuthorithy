@@ -261,6 +261,10 @@ namespace WaterAndWastewaterAuthorithy
         {
             Ac.ShowWindow("Reports", "ReadingListReport");
         }
+        private void ButtonDebtorsReport_Click(object sender, RoutedEventArgs e)
+        {
+            Ac.ShowWindow("Reports", "DebtorsReport");
+        }
 
         private void ButtonSub_KeyDown(object sender, KeyEventArgs e)
         {
@@ -300,11 +304,18 @@ namespace WaterAndWastewaterAuthorithy
         private void ButtonReadingList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Tab && !(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
-                ButtonSub.Focus();
+                ButtonDebtorsReport.Focus();
             if (e.Key == Key.Tab && (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
                 ButtonDore.Focus();
         }
-        
+        private void ButtonDebtorsReport_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab && !(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
+                ButtonSub.Focus();
+            if (e.Key == Key.Tab && (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
+                ButtonReadingList.Focus();
+        }
+
         public int CheckPeriod()
         {
             Commons.SetPeriod();

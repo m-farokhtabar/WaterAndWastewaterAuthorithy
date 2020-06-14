@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 namespace WaterAndWastewaterAuthorithy.Presentation
@@ -186,7 +175,15 @@ namespace WaterAndWastewaterAuthorithy.Presentation
                 case "SendSmsToDebtors":
                     MainWindowApp.UserControlSendSmsToDebtors.Visibility = Visibility.Hidden;
                     MainWindowApp.SendSmsToDebtors.Width = new GridLength(0);
-                    break;                    
+                    break;
+                case "ReadingListReport":
+                    MainWindowApp.UserControlReadingListReport.Visibility = Visibility.Hidden;
+                    MainWindowApp.ReadingListReport.Width = new GridLength(0);
+                    break;
+                case "DebtorsReport":
+                    MainWindowApp.UserControlDebtorsReport.Visibility = Visibility.Hidden;
+                    MainWindowApp.DebtorsReport.Width = new GridLength(0);
+                    break;
             }
             switch (Destination)
             {
@@ -315,6 +312,16 @@ namespace WaterAndWastewaterAuthorithy.Presentation
                     MainWindowApp.SendSmsToDebtors.Width = new GridLength(920);
                     MainWindowApp.UserControlSendSmsToDebtors.Visibility = Visibility.Visible;
                     MainWindowApp.UserControlSendSmsToDebtors.ButtonReturn.Focus();
+                    break;
+                case "ReadingListReport":
+                    MainWindowApp.ReadingListReport.Width = new GridLength(920);
+                    MainWindowApp.UserControlReadingListReport.Visibility = Visibility.Visible;
+                    MainWindowApp.UserControlReadingListReport.ButtonReturn.Focus();
+                    break;
+                case "DebtorsReport":
+                    MainWindowApp.DebtorsReport.Width = new GridLength(920);
+                    MainWindowApp.UserControlDebtorsReport.Visibility = Visibility.Visible;
+                    MainWindowApp.UserControlDebtorsReport.ButtonReturn.Focus();
                     break;
             }
         }

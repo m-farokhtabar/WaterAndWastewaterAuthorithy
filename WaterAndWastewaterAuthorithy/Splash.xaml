@@ -14,10 +14,9 @@
         </EventTrigger>
     </Window.Triggers>
     <Canvas>
-        <Image x:Name="TaralLogo" Source="/Images/Splash/TaralLogo.jpg"></Image>
         <Image x:Name="WaterLogo" Source="/Images/Splash/WaterWasteWaterAuthorityLogo.jpg" Canvas.Right="2" Width="52" Height="50" Stretch="None"></Image>
         <Rectangle x:Name="RectWaterLogo" Fill="#008ecf" Width="52" Height="50" Canvas.Right="2"/>
         <Image x:Name="ProjectName" Source="/Images/Splash/ProjectName.jpg" Canvas.Top="105" Canvas.Right="40" Opacity="1"></Image>
-        <TextBlock FontSize="10" Foreground="White" Canvas.Top="208" Canvas.Left="6">1392 © کلیه حقوق نرم افزار متعلق به شرکت شبکه پردازان امید پارسیان (تارال) می باشد.</TextBlock>
+        <TextBlock FontSize="10" Foreground="White" Canvas.Top="208" Canvas.Left="6">1392 © کلیه حقوق نرم افزار متعلق به مهدی فرخ تبار می باشد.</TextBlock>
     </Canvas>
 </Window>

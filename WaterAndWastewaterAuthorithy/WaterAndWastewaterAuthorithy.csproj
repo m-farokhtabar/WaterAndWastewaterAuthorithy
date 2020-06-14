@@ -152,6 +152,9 @@
       <DependentUpon>Customers.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataLayers\Context.cs" />
+    <Compile Include="DebtorsReport.xaml.cs">
+      <DependentUpon>DebtorsReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DomainClasses\AccountTypesTb.cs" />
     <Compile Include="DomainClasses\BillingDetails.cs" />
     <Compile Include="DomainClasses\BillPeriodsTb.cs" />
@@ -298,6 +301,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Customers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DebtorsReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -462,7 +469,13 @@
     <None Include="Reports\Customers.mrt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Reports\DebtorsReport.mrt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Reports\OneSubBillForAllPeriod.mrt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\ReadingListReport.mrt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Reports\Subscriptions.mrt">

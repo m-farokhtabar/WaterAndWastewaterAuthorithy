@@ -261,7 +261,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Grid.Row="0" Source="Images/MainMenu/Taral.png" Width="64" Height="64"/>
+                            <Image Grid.Column="0" Grid.Row="0" Source="Images/Splash/WaterWasteWaterAuthorityLogo.jpg" Width="64" Height="64"/>
                             <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource ResourceKey=TextOfMainMenuButton}">درباره نرم افزار</TextBlock>
                         </Grid>
                     </Border>

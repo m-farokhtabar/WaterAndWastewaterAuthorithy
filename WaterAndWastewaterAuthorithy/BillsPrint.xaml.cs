@@ -54,7 +54,8 @@ namespace WaterAndWastewaterAuthorithy
         {
             Commons.LoadComboBox(ComboBoxAccountType, "AccountTypesTb", "نوع کاربری");
             ComboBoxAccountType.SelectedIndex = 0;
-            DataGridView.ItemsSource = Commons.Db.BillsVws.ToList().OrderBy(x => x.SortableId);
+            DoSearch();
+            //DataGridView.ItemsSource = Commons.Db.BillsVws.AsNoTracking().ToList().OrderBy(x => x.SortableId);
             FirstControl.Focus();
         }
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
@@ -370,9 +371,8 @@ namespace WaterAndWastewaterAuthorithy
                 //    Sql += " Address like N'%" + TextBoxAddress.Text.Trim() + "%'";
             }
             if (SubScriptionIdFromFlag || SubScriptionIdToFlag || BillIdFlag || CustomerIdFlag || NameFlag || FamilyFlag || FatherFlag || AccountTypeIdFlag || NationalCodeFlag || PostalCodeFlag || DateFromFlag || DateToFlag || AddressFlag)
-            {
-                Sql = "Select * from BillsVw";// Where " + Sql;
-                DataGridView.ItemsSource = Commons.Db.BillsVws.SqlQuery(Sql).ToList().Where(
+            {                
+                DataGridView.ItemsSource = Commons.Db.BillsVws.AsNoTracking().ToList().Where(
                                            x => (SubScriptionIdFromFlag == true || x.SortableId.CompareTo(SubScriptionIdFromText) >= 0) &&
                                                 (SubScriptionIdToFlag == true || x.SortableId.CompareTo(SubScriptionIdToText) <= 0) &&
                                                 (BillIdFlag == true || x.BillId == BillIdInt) &&

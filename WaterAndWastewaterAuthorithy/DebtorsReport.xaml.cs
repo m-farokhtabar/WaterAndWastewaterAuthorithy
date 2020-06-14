@@ -13,9 +13,9 @@ using WaterAndWastewaterAuthorithy.DomainClasses;
 namespace WaterAndWastewaterAuthorithy
 {
     /// <summary>
-    /// Interaction logic for ReadingListReport.xaml
+    /// Interaction logic for DebtorsReport.xaml
     /// </summary>
-    public partial class ReadingListReport : UserControl
+    public partial class DebtorsReport : UserControl
     {
         System.Collections.Specialized.ListDictionary ControlsArray = new System.Collections.Specialized.ListDictionary();
         public Control FirstControl = null;
@@ -23,21 +23,19 @@ namespace WaterAndWastewaterAuthorithy
         string PrevHint = "";
 
         #region Loading
-        public ReadingListReport()
+        public DebtorsReport()
         {
             InitializeComponent();
             FirstControl = TextBoxSubScriptionIdFrom;
             ControlsArray.Add(TextBoxSubScriptionIdFrom, new ControlsTab { Prev = DataGridView, Next = TextBoxSubScriptionIdTo, Type = ControlsType.TextBoxText });
-            ControlsArray.Add(TextBoxSubScriptionIdTo, new ControlsTab { Prev = TextBoxSubScriptionIdFrom, Next = TextBoxMeliCode, Type = ControlsType.TextBoxText });
-            ControlsArray.Add(TextBoxMeliCode, new ControlsTab { Prev = TextBoxSubScriptionIdTo, Next = TextBoxName, Type = ControlsType.TextBoxNumber });
+            ControlsArray.Add(TextBoxSubScriptionIdTo, new ControlsTab { Prev = TextBoxSubScriptionIdFrom, Next = TextBoxPayableFrom, Type = ControlsType.TextBoxText });
 
-            ControlsArray.Add(TextBoxName, new ControlsTab { Prev = TextBoxMeliCode, Next = TextBoxFamily, Type = ControlsType.TextBoxText });
-            ControlsArray.Add(TextBoxFamily, new ControlsTab { Prev = TextBoxName, Next = TextBoxFather, Type = ControlsType.TextBoxText });
-            ControlsArray.Add(TextBoxFather, new ControlsTab { Prev = TextBoxFamily, Next = ButtonBeginSearch, Type = ControlsType.TextBoxText });
-            
-            ControlsArray.Add(ButtonBeginSearch, new ControlsTab { Prev = TextBoxFather, Next = DataGridView, Type = ControlsType.TextBoxText });
+            ControlsArray.Add(TextBoxPayableFrom, new ControlsTab { Prev = TextBoxSubScriptionIdTo, Next = TextBoxPayableTo, Type = ControlsType.TextBoxNumber });
+            ControlsArray.Add(TextBoxPayableTo, new ControlsTab { Prev = TextBoxPayableFrom, Next = ButtonBeginSearch, Type = ControlsType.TextBoxNumber });
 
-            ControlsArray.Add(DataGridView, new ControlsTab { Prev = TextBoxFather, Next = null, Type = ControlsType.TextBoxText });
+            ControlsArray.Add(ButtonBeginSearch, new ControlsTab { Prev = TextBoxPayableTo, Next = DataGridView, Type = ControlsType.TextBoxText });
+
+            ControlsArray.Add(DataGridView, new ControlsTab { Prev = TextBoxPayableTo, Next = null, Type = ControlsType.TextBoxText });
         }
         private void UserControlBillsPrint_Loaded(object sender, RoutedEventArgs e)
         {
@@ -45,7 +43,7 @@ namespace WaterAndWastewaterAuthorithy
         }
         private void UserControlBillsPrint_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            DoSearch();            
+            DoSearch();
             FirstControl.Focus();
         }
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
@@ -186,20 +184,16 @@ namespace WaterAndWastewaterAuthorithy
         #endregion
 
         private void DoSearch()
-        {            
+        {
             bool SubScriptionIdFromFlag = true;
             string SubScriptionIdFromText = "";
             bool SubScriptionIdToFlag = true;
             string SubScriptionIdToText = "";
-            string NationalCode = "";
-            bool NationalCodeFlag = true;
 
-            bool NameFlag = true;
-            string NameText = "";
-            bool FamilyFlag = true;
-            string FamilyText = "";
-            bool FatherFlag = true;
-            string FatherText = "";
+            long? DebFrom = 0;
+            bool DebtFromFlag = true;
+            long? DebTo = 0;
+            bool DebtToFlag = true;
 
             if (TextBoxSubScriptionIdFrom.Text.Trim() != "")
             {
@@ -215,7 +209,6 @@ namespace WaterAndWastewaterAuthorithy
                     return;
 
                 }
-                //Sql = "SubscriptionId='" + TextBoxSubScriptionId.Text.Trim() + "'";
             }
             if (TextBoxSubScriptionIdTo.Text.Trim() != "")
             {
@@ -230,56 +223,24 @@ namespace WaterAndWastewaterAuthorithy
                     Msg.ShowDialog();
                     return;
                 }
-                //Sql = "SubscriptionId='" + TextBoxSubScriptionId.Text.Trim() + "'";
             }
-            if (TextBoxName.Text.Trim() != "")
+            if (TextBoxPayableFrom.Text.Trim() != "")
             {
-                NameFlag = false;
-                NameText = TextBoxName.Text.Trim();
-                //if (Sql.Trim() != "")
-                //    Sql += " AND Name like N'%" + TextBoxName.Text.Trim() + "%'";
-                //else
-                //    Sql += " Name like N'%" + TextBoxName.Text.Trim() + "%'";
+                DebFrom = Convert.ToInt64(TextBoxPayableFrom.Text);
+                DebtFromFlag = false;
             }
-            if (TextBoxFamily.Text.Trim() != "")
+            if (TextBoxPayableTo.Text.Trim() != "")
             {
-                FamilyFlag = false;
-                FamilyText = TextBoxFamily.Text.Trim();
-                //if (Sql.Trim() != "")
-                //    Sql += " AND Family like N'%" + TextBoxFamily.Text.Trim() + "%'";
-                //else
-                //    Sql += " Family like N'%" + TextBoxFamily.Text.Trim() + "%'";
+                DebTo = Convert.ToInt64(TextBoxPayableTo.Text);
+                DebtToFlag = false;
             }
-            if (TextBoxFather.Text.Trim() != "")
-            {
-                FatherFlag = false;
-                FatherText = TextBoxFather.Text.Trim();
-                //if (Sql.Trim() != "")
-                //    Sql += " AND Father like N'%" + TextBoxFather.Text.Trim() + "%'";
-                //else
-                //    Sql += " Father like N'%" + TextBoxFather.Text.Trim() + "%'";
-            }
-            if (TextBoxMeliCode.Text.Trim() != "")
-            {
-                NationalCodeFlag = false;
-                NationalCode = TextBoxMeliCode.Text.Trim();
-                //if (Sql.Trim() != "")
-                //    Sql += " AND MeliCode = " + TextBoxMeliCode.Text.Trim();
-                //else
-                //    Sql += " MeliCode = " + TextBoxMeliCode.Text.Trim();
-            }
-            if (SubScriptionIdFromFlag || SubScriptionIdToFlag || NameFlag || FamilyFlag || FatherFlag || NationalCodeFlag)
-            {
-                DataGridView.ItemsSource = Commons.Db.Subscriptions.Include(x => x.Customer).Include(x=>x.AccountType).Where(x => x.Year == Commons.CurrentYear &&
-                                                  (NameFlag == true || x.Customer.Name.Contains(NameText)) &&
-                                                  (FamilyFlag == true || x.Customer.Family.Contains(FamilyText)) &&
-                                                  (FatherFlag == true || x.Customer.Father.Contains(FatherText)) &&
-                                                  (NationalCodeFlag == true || x.Customer.MeliCode == NationalCode))
-                                                  .ToList()
-                                                  .Where(x => (SubScriptionIdFromFlag == true || x.SortableId.CompareTo(SubScriptionIdFromText) >= 0) &&
-                                                         (SubScriptionIdToFlag == true || x.SortableId.CompareTo(SubScriptionIdToText) <= 0)).OrderBy(x=>x.SortableId).ToList();
-                    
-            }
+            DataGridView.ItemsSource = Commons.Db.Subscriptions.AsNoTracking().Include(x => x.Customer).Include(x => x.AccountType).Where(x => x.Year == Commons.CurrentYear &&
+                                                x.Debt > 0 &&
+                                                (DebtFromFlag == true || x.Debt >= DebFrom.Value) &&
+                                                (DebtToFlag == true || x.Debt <= DebTo.Value)).ToList()
+                                              .Where(x => (SubScriptionIdFromFlag == true || x.SortableId.CompareTo(SubScriptionIdFromText) >= 0) &&
+                                                     (SubScriptionIdToFlag == true || x.SortableId.CompareTo(SubScriptionIdToText) <= 0)).OrderBy(x => x.SortableId).ToList();
+
         }
         private void ButtonReport_Click(object sender, RoutedEventArgs e)
         {
@@ -292,9 +253,9 @@ namespace WaterAndWastewaterAuthorithy
                 if (Tb.ToList().Count > 0)
                 {
                     DataTable Dt = Commons.ToDataTable<SubscriptionsTb>(Tb);
-                    Dt.TableName = "ReadingList";
+                    Dt.TableName = "DebtorsReport";
 
-                    PrintPreviewDialog PrintPrv = new PrintPreviewDialog(@"Reports\ReadingListReport.mrt", GridHeader.Background,"قرائت اشتراک ها", Dt);
+                    PrintPreviewDialog PrintPrv = new PrintPreviewDialog(@"Reports\DebtorsReport.mrt", GridHeader.Background, "بدهکاران", Dt);
                     PrintPrv.ShowDialog();
                 }
                 else
@@ -315,7 +276,7 @@ namespace WaterAndWastewaterAuthorithy
         }
         private void ButtonReturn_Click(object sender, RoutedEventArgs e)
         {
-            Ac.ShowWindow("ReadingListReport", "Reports");            
+            Ac.ShowWindow("DebtorsReport", "Reports");
         }
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {

@@ -45,6 +45,7 @@ namespace WaterAndWastewaterAuthorithy
         private void UserControlBillsPrint_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             //DataGridView.ItemsSource = Commons.Db.BillsVws.ToList().OrderBy(x => x.SortableId);
+            //DoSearch();
             FirstControl.Focus();
         }
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
@@ -230,7 +231,7 @@ namespace WaterAndWastewaterAuthorithy
         {
             try
             {
-                var tmp = from sb in Commons.Db.Subscriptions
+                var tmp = from sb in Commons.Db.Subscriptions.AsNoTracking()
                           where sb.Id==SubId
                           join ct in Commons.Db.Customers on new { SbC = sb.CustomerId, SbY = sb.CustomerYear } equals new { SbC = ct.Id, SbY = ct.Year }
                           join b in Commons.Db.Bills on new { SbB = sb.Id, SbY = sb.Year } equals new { SbB = b.SubscriptionId, SbY = b.SubscriptionYear }
